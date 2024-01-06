@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="App">
       <h4>{questionList[currIndex].question.text}</h4>
-      <Options optionsArr={optionsArr}/>
+      <Options optionsArr={optionsArr} correctAns={correctAns}/>
       <button onClick={() => setCurrIndex(currIndex => currIndex + 1)} style={{ display: currIndex == 9 ? "none" : "block" }}>
         Next
       </button>
