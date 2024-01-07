@@ -31,7 +31,6 @@ function App() {
   let optionsArr = questionList[currIndex].incorrectAnswers;
   let correctAns = questionList[currIndex].correctAnswer;
   optionsArr.push(correctAns);
-  console.log(optionsArr);
   return (
     <div className="App">
       <h4>{questionList[currIndex].question.text}</h4>
