@@ -1,4 +1,4 @@
-.OptionsDiv button {
+/* .OptionsDiv button {
     margin: 20px 0;
     padding: 20px 0;
     border: 2px solid black;
@@ -10,4 +10,14 @@
 .optDiv label {
     display: inline-block;
     width: 200px;
+} */
+
+
+.optDiv {
+    display: flex;
+    align-items: center;
+}
+
+input[type='radio'] {
+    margin-right: 5px;
 }
