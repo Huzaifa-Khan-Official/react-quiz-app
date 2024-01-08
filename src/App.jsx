@@ -59,6 +59,8 @@ function App() {
   let [currQuestion, setCurrQuestion] = useState(0);
   let [questionsArray, setQuestionsArray] = useState([]);
   let [clickedOpt, setClickedOpt] = useState(0);
+  let [score, setScore] = useState(0);
+  let optionsArr = [];
 
   function getDataFromAPI() {
     fetch('https://the-trivia-api.com/v2/questions')
@@ -72,20 +74,38 @@ function App() {
     getDataFromAPI()
   }, []);
 
+  useEffect(() => {
+    if (optionsArr) {
+      optionsArr.sort(() => Math.random() - 0.5)
+    }
+  }, [clickedOpt]);
+
   if (!questionsArray.length) {
     return <img src={animatedLogo} alt="" className='animatedLoader' />
   }
 
-  let optionsArr = questionsArray[currQuestion].incorrectAnswers;
-  let correctAns = questionsArray[currQuestion].correctAnswer;
-  optionsArr.push(correctAns);
-
   const nextQuestion = () => {
+    updateScore();
     if (currQuestion < questionsArray.length - 1) {
       setCurrQuestion(currQuestion + 1);
+      setClickedOpt(null);
     }
   }
 
+  const updateScore = () => {
+    if (clickedOpt === questionsArray[currQuestion - 1].correctAnswer) {
+      console.log("sahi kya hai");
+    }
+  }
+
+
+  let incorrectOpts = questionsArray[currQuestion].incorrectAnswers;
+  optionsArr.push(...incorrectOpts);
+  let correctAns = questionsArray[currQuestion].correctAnswer;
+  optionsArr.push(correctAns);
+
+
+  console.log(questionsArray[currQuestion].correctAnswer);
 
   return (
     <>
