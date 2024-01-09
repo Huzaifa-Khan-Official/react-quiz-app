@@ -2,41 +2,25 @@
     width: 100%;
 }
 
-/* .App {
-    text-align: center;
-    margin: 20px;
-}
-
-.OptionsDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.optDiv {
-    margin: 5px;
-} */
-
 body {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #3aaccb;
-    min-height: 100vh;
-    width: 100%;
+    padding: 40px 20px;
 }
 
 .container {
+    max-width: 500px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    min-height: 400px;
-    width: 400px;
     background-color: white;
     border-radius: 15px;
     overflow: hidden;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
 }
 
 h1 {
@@ -55,6 +39,7 @@ h1 {
     border-radius: 5px;
     width: 100%;
 }
+
 .questionDiv h3 {
     margin: 10px 10px;
 }
@@ -70,13 +55,12 @@ h1 {
 
 .option-btn {
     box-shadow: 0px 0px 4px 1px rgb(128, 123, 123);
-    padding: 15px 0;
+    padding: 15px 10px;
     border-radius: 3px;
     border: none;
     outline: none;
     transition: 0.3s;
     margin: 5px;
-    /* margin-left: 15px; */
     min-height: 30px;
     background-color: white;
 }
@@ -90,4 +74,44 @@ h1 {
 .option-btn:hover {
     background-color: grey;
     color: white;
+}
+
+
+#next-button {
+    padding: 10px;
+    border: none;
+    background-color: rgba(39, 98, 114, 0.791);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px 1px rgb(127, 109, 109);
+    font-size: larger;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    transition: 0.2s;
+    width: 100px;
+}
+
+#next-button:hover {
+    background-color: #276272;
+}
+#next-button:active {
+    box-shadow: none;
+}
+
+
+.showScoreDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.showScoreDiv p {
+    font-size: 32px;
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 40px 10px;
+    }
 }
