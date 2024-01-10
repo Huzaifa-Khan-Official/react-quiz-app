@@ -52,7 +52,6 @@ function App() {
   let correctAns = questionsArray[currQuestion].correctAnswer;
   optionsArr.push(correctAns);
 
-  console.log(isClicked);
   return (
     <>
       <h1>Quiz APP</h1>
