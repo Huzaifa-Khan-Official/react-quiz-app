@@ -114,7 +114,9 @@ h1 {
     width: 200px;
     height: 200px;
 }
-
+.remarkDiv h3 {
+    text-align: center;
+}
 @media (max-width: 400px) {
     body {
         padding: 40px 10px;

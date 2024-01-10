@@ -8,7 +8,14 @@ export default function QuizResult({ score, totalScore }) {
         <>
             <div className="showScoreDiv">
                 <div className='show-score'>
-                    <img src={percentage >= 70 ? {celebrateGif} : coffinDanceGif} alt="" id='perImg'/>
+                    <div className="remarkDiv">
+                        <h3>{percentage >= 50 ? "Congratulations!" : "Sorry!"}</h3>
+                    </div>
+
+                    <img src={percentage >= 50 ? celebrateGif : coffinDanceGif} alt="" id='perImg'/>
+
+                    <p>Percentage: {percentage}</p>
+
                     <p>Your Score: {score}</p>
 
                     <p>Total Score: {totalScore}</p>
