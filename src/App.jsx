@@ -7,6 +7,7 @@ function App() {
   let [currQuestion, setCurrQuestion] = useState(0);
   let [questionsArray, setQuestionsArray] = useState([]);
   let [clickedOpt, setClickedOpt] = useState(0);
+  let [isClicked, setIsClicked] = useState(false);
   let [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   let optionsArr = [];
@@ -30,6 +31,7 @@ function App() {
 
   const nextQuestion = () => {
     updateScore();
+    setIsClicked(false);
     if (currQuestion < questionsArray.length - 1) {
       setCurrQuestion(currQuestion + 1);
       setClickedOpt(null);
@@ -50,21 +52,13 @@ function App() {
   let correctAns = questionsArray[currQuestion].correctAnswer;
   optionsArr.push(correctAns);
 
-
-  const resetAll = () => {
-    setShowResult(false);
-    setCurrQuestion(0);
-    setClickedOpt(0);
-    setScore(0);
-  }
-
-
+  console.log(isClicked);
   return (
     <>
       <h1>Quiz APP</h1>
       <div className="container">
         {showResult ? (
-          < QuizResult score={score} totalScore={questionsArray.length} tryAgain={resetAll} />
+          < QuizResult score={score} totalScore={questionsArray.length} />
         ) : (
           <>
             <div className="questionDiv">
@@ -77,7 +71,10 @@ function App() {
                     key={i}
                     className={`option-btn ${clickedOpt === i + 1 ? "checked" : null
                       }`}
-                    onClick={() => setClickedOpt(i + 1)}
+                    onClick={() => { 
+                      setClickedOpt(i + 1);
+                      setIsClicked(true);
+                     }}
                   >
                     {option}
                   </button>
@@ -85,7 +82,7 @@ function App() {
               })}
             </div>
 
-            <button id="next-button" onClick={nextQuestion}>
+            <button id="next-button" onClick={nextQuestion} disabled={!isClicked ? true : false}>
               Next
             </button>
           </>

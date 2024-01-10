@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function QuizResult({ score, totalScore, tryAgain }) {
+export default function QuizResult({ score, totalScore }) {
     return (
         <>
             <div className="showScoreDiv">
@@ -10,11 +10,6 @@ export default function QuizResult({ score, totalScore, tryAgain }) {
                     <p>Total Score: {totalScore}</p>
 
                 </div>
-                <button id="next-button"
-                    onClick={tryAgain}
-                >
-                    Try Again
-                </button>
             </div>
 
         </>
