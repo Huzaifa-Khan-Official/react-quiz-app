@@ -11,12 +11,15 @@ function App() {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [optionsArr, setOptionsArr] = useState([]);
+  let [second, setSecond] = useState(59);
+  let [minute, setMinute] = useState(0);
 
   function getDataFromAPI() {
     fetch('https://the-trivia-api.com/v2/questions')
       .then(res => res.json())
       .then(res => {
         setQuestionsArray(res);
+        setMinute(res.length - 1);
       })
   }
 
@@ -31,8 +34,24 @@ function App() {
     setOptionsArr(options);
   }
 
+  const timer = () => {
+    let id = setInterval(() => {
+      second = second - 1;
+      setSecond(second);
+      // second <= 0
+      if (second <= 50) {
+        console.log("sahi hai");
+        setMinute(oldValue => oldValue - 1);
+
+        second = 59;
+        setSecond(second);
+      }
+    }, 1000);
+  }
+
   useEffect(() => {
     getDataFromAPI();
+    timer()
   }, []);
 
   useEffect(() => {
@@ -62,6 +81,8 @@ function App() {
     return <img src={animatedLogo} alt="" className='animatedLoader' />
   }
 
+
+
   return (
     <>
       <h1>Quiz APP</h1>
@@ -70,6 +91,13 @@ function App() {
           <QuizResult score={score} totalScore={questionsArray.length} />
         ) : (
           <>
+            <div className="timerDiv">
+              <div className="secondDiv">
+                <p>
+                  {minute} : {second}
+                </p>
+              </div>
+            </div>
             <div className="questionDiv">
               <h3>{currQuestion + 1}.{questionsArray[currQuestion].question.text}</h3>
             </div>
@@ -79,7 +107,7 @@ function App() {
                   <button
                     key={i}
                     className={`option-btn ${clickedOpt === i + 1 ? "checked" : null}`}
-                    onClick={() => { 
+                    onClick={() => {
                       setClickedOpt(i + 1);
                       setIsClicked(true);
                     }}
