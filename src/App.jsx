@@ -35,19 +35,30 @@ function App() {
   }
 
   const timer = () => {
+    let milliSec = 100;
     let id = setInterval(() => {
-      second = second - 1;
-      setSecond(second);
-      // second <= 0
-      if (second <= 50) {
-        console.log("sahi hai");
-        setMinute(oldValue => oldValue - 1);
-
-        second = 59;
-        setSecond(second);
+      milliSec--;
+      if (milliSec === -1) {
+        milliSec = 100;
+        setSecond((prevSecond) => {
+          let newSecond = prevSecond - 1;
+          if (newSecond === -1) {
+            setMinute((prevMinute) => {
+              let newMinute = prevMinute - 1;
+              if (newMinute <= 0 && newSecond <= 0) {
+                setShowResult(true);
+                clearInterval(id);
+                return 0; 
+              }
+              setSecond(59);
+              return newMinute;
+            });
+          }
+          return newSecond;
+        });
       }
-    }, 1000);
-  }
+    }, 1);
+  };
 
   useEffect(() => {
     getDataFromAPI();
@@ -80,8 +91,6 @@ function App() {
   if (!questionsArray.length) {
     return <img src={animatedLogo} alt="" className='animatedLoader' />
   }
-
-
 
   return (
     <>
