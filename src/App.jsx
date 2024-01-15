@@ -29,6 +29,12 @@ function App() {
     return <img src={animatedLogo} alt="" className='animatedLoader' />
   }
 
+  const updateScore = () => {
+    if (optionsArr[clickedOpt] === correctAns) {
+      setScore(score + 1);
+    }
+  }
+
   const nextQuestion = () => {
     updateScore();
     setIsClicked(false);
@@ -40,16 +46,13 @@ function App() {
     }
   }
 
-  const updateScore = () => {
-    if (optionsArr[clickedOpt] === correctAns) {
-      setScore(score + 1);
-    }
-  }
+  
 
 
   let incorrectOpts = questionsArray[currQuestion].incorrectAnswers;
   optionsArr.push(...incorrectOpts);
   let correctAns = questionsArray[currQuestion].correctAnswer;
+  console.log(correctAns);
   optionsArr.push(correctAns);
 
   return (
